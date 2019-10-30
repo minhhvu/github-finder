@@ -14,6 +14,12 @@ class Homepage extends React.Component{
         };
     }
 
+    async componentDidMount() {
+        //Initialize the users data
+        let res = await axios.get(`https://api.github.com/users?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+        this.setState({users: res.data});
+    }
+
     handleKeywordsChange = (text) => {
         this.setState({keywords : text});
         // console.log(this.state.keywords);
