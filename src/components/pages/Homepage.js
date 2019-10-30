@@ -2,7 +2,6 @@ import React from 'react';
 import {Fragment} from 'react';
 import SearchForm from "../layout/SearchForm";
 import UsersGrid from "../layout/UsersGrid";
-import axios from 'axios';
 
 class Homepage extends React.Component{
 
@@ -16,6 +15,7 @@ class Homepage extends React.Component{
                 />
                 <UsersGrid
                     users={this.props.users}
+                    onUserClick={this.props.handleSingleUseChange}
                 />
             </Fragment>
         );

@@ -2,16 +2,18 @@ import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import About from "./components/pages/About";
 import Homepage from "./components/pages/Homepage";
-import './App.css';
+import UserDetail from "./components/pages/UserDetail";
+// import './App.css';
 import Navbar from "./components/layout/Navbar";
 import axios from "axios";
-import SearchForm from "./components/layout/SearchForm";
 
 class App extends React.Component{
 
     state = {
         keywords: '',
         users: [],
+        singleUser: {},
+        userRepos: [],
         loading: false,
     };
 
@@ -36,6 +38,18 @@ class App extends React.Component{
         // console.log(this.state.users);
     }
 
+    handleSingleUseChange = async (id) => {
+        //Retrieve user infor from Github API
+        this.setState({loading: true});
+        let response = await axios.get(`https://api.github.com/users/${id}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+        this.setState({singleUser : response.data, loading: false});
+
+        //Retrieve user repositories
+        this.setState({loading: true});
+        response = await axios.get(`https://api.github.com/users/${id}/repos?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+        this.setState({userRepos : response.data, loading: false});
+    }
+
 
     render() {
       return (
@@ -47,10 +61,20 @@ class App extends React.Component{
                           keywords={this.state.keywords}
                           onKeywordsChange={this.handleKeywordsChange}
                           onFormSubmit={this.handleUsersChange}
+                          onUserClick={this.handleSingleUseChange}
                           users={this.state.users}
                       />
                   )}/>
                   <Route exact path={'/about'} component={About}/>
+                  <Route exact path={'/users/:id'} render={props => (
+                        <UserDetail
+                            {...props}
+                            singleUser={this.state.singleUser}
+                            userRepos={this.state.userRepos}
+                            onSingleUserChange={this.handleSingleUseChange}
+                            loading={this.state.loading}
+                        />
+                      )}/>
               </Switch>
           </Router>
       );

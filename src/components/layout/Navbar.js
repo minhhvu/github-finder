@@ -3,10 +3,11 @@ import {Link} from 'react-router-dom';
 
 const Navbar = () => {
     return (
-        <nav className={'navbar navbar-expand-sm'} style={{}}>
-            <div className={'navbar-brand'}>
-                <Link to={'/'}>Github Finder</Link>
-            </div>
+        <nav className={'navbar navbar-expand-sm navbar-dark bg-danger'} style={{color: 'white'}}>
+
+            <Link to={'/'}>
+                <div className={'navbar-brand'}>Github Finder</div>
+            </Link>
 
             <button className="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"

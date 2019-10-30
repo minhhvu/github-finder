@@ -10,7 +10,7 @@ const SearchForm = (props) => {
     }
 
     return (
-        <form className={'form-group mb-5'} onSubmit={onFormSubmit}>
+        <form className={'form-group mb-4 mt-4'} onSubmit={onFormSubmit}>
             <input
                 className={'form-control mb-3'}
                 type="text"
@@ -19,7 +19,7 @@ const SearchForm = (props) => {
                 name={'keyword'}
                 placeholder={'Enter user ...'}/>
             <input
-                className={'btn btn-info w-100'}
+                className={'btn btn-dark w-100'}
                 type={'submit'}
                 value={'Search'}
                 name={'btn-search'}/>
