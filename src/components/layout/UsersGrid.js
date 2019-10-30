@@ -1,10 +1,18 @@
 import React from 'react';
 
 const UsersGrid = (props) => {
-    // let x = JSON.stringify(props.users)
+    const listUsers = props.users.map((user) =>
+        <div className={'border rounded p-2 mb-3'} style={{width: '12rem'}}>
+            <img src={user.avatar_url} className={"card-img-top"} alt={user.login}/>
+            <div className={'text-center'}>
+                <div className={'h5 card-title'}>{user.login}</div>
+                <div className={''}>more ...</div>
+            </div>
+        </div>
+    );
     return (
-        <div>
-            {props.keywords}
+        <div className={'d-flex flex-row flex-wrap justify-content-sm-between justify-content-center'}>
+            {listUsers}
         </div>
     );
 }

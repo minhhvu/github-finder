@@ -2,13 +2,15 @@ import React from 'react';
 import {Fragment} from 'react';
 import SearchForm from "../layout/SearchForm";
 import UsersGrid from "../layout/UsersGrid";
+import axios from 'axios';
 
 class Homepage extends React.Component{
     constructor(props){
         super(props);
         this.state = {
             keywords: '',
-            users: {},
+            users: [],
+            loading: false,
         };
     }
 
@@ -17,12 +19,14 @@ class Homepage extends React.Component{
         // console.log(this.state.keywords);
     }
 
-    handleUsersChange = () => {
+    handleUsersChange = async () => {
         //Retrieve data from Github API
-        let res = {exam: 'submitform'};
+        this.setState({loading: true});
+        const search = this.state.keywords !=='' ? this.state.keywords : 'minh'; //setup the 'minh' as the searching keywords
+        let response = await axios.get(`https://api.github.com/search/users?q=${search}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
 
-        this.setState({users : res});
-        // console.log(this.state.keywords);
+        this.setState({users : response.data.items, loading: false});
+        // console.log(this.state.users);
     }
 
     render() {
@@ -35,7 +39,7 @@ class Homepage extends React.Component{
                 />
                 <UsersGrid
                     users={this.state.users}
-                    keywords={this.state.keywords}
+                    // keywords={this.state.keywords}
                 />
             </Fragment>
         );

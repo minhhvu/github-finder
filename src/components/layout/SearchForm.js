@@ -4,9 +4,13 @@ const SearchForm = (props) => {
     const onKeywordsChange = (e) => {
         props.onKeywordsChange(e.target.value);
     }
+    const onFormSubmit = (e) => {
+        e.preventDefault();
+        props.onFormSubmit();
+    }
 
     return (
-        <form className={'form-group'}>
+        <form className={'form-group mb-5'} onSubmit={onFormSubmit}>
             <input
                 className={'form-control mb-3'}
                 type="text"
@@ -16,9 +20,8 @@ const SearchForm = (props) => {
                 placeholder={'Enter user ...'}/>
             <input
                 className={'btn btn-info w-100'}
-                type={'button'}
+                type={'submit'}
                 value={'Search'}
-                onClick={props.onFormSubmit}
                 name={'btn-search'}/>
         </form>
     );
