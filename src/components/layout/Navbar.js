@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 const Navbar = () => {
     return (
         <nav className={'navbar navbar-expand-sm'} style={{}}>
-            <div class={'navbar-brand'}>
+            <div className={'navbar-brand'}>
                 <Link to={'/'}>Github Finder</Link>
             </div>
 
