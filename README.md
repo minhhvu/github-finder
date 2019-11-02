@@ -1,5 +1,7 @@
 This project was a react app which retrieved data from GitHub API to provide users could search for the profile of GitHub users. 
 
+The purposed of project is to practice on React and React-router
+
 ## Available Scripts
 
 In the project directory, you can run:
