@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was a react app which retrieved data from GitHub API to provide users could search for the profile of GitHub users. 
 
 ## Available Scripts
 
