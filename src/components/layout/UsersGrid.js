@@ -4,8 +4,8 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
 const UsersGrid = ({users}) => {
-    console.log('start showing')
-    console.log(users.items)
+    // console.log('start showing')
+    // console.log(users.items)
     const listUsers = users.items.map((user) =>
         <div className={'border rounded p-2 mb-3'} style={{width: '12rem'}}>
             <Link to={`/users/${user.login}`}>
@@ -37,4 +37,3 @@ const mapStateToProps = state => ({
 export default connect(
     mapStateToProps
 )(UsersGrid)
-// export default UsersGrid;

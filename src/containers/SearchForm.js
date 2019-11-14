@@ -5,10 +5,15 @@ import {enterKeywords, fetchGets} from "../actions";
 const SearchForm = ({dispatch}) => {
     let input
 
+    const onKeywordsChange = (e) => {
+        e.preventDefault()
+        dispatch(enterKeywords(e.target.value))
+    }
+
     const onFormSubmit = (e) => {
         e.preventDefault()
 
-        console.log('Click on')
+        // console.log('Click on')
         let keywords = input.value
         dispatch(enterKeywords(keywords))
 

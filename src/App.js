@@ -6,8 +6,10 @@ import UserDetail from "./components/pages/UserDetail";
 // import './App.css';
 import Navbar from "./components/layout/Navbar";
 import axios from "axios";
+import {fetchGetUser} from "./actions";
+import {connect} from 'react-redux'
 
-class App extends React.Component{
+const  App = ({dispatch}) => {
 
     // state = {
     //     keywords: '',
@@ -51,35 +53,30 @@ class App extends React.Component{
     // }
 
 
-    render() {
       return (
           <Router>
               <Navbar/>
               <Switch>
-                  <Route exact path='/' render={props => (
-                      <Homepage
-                          // keywords={this.state.keywords}
-                          // onKeywordsChange={this.handleKeywordsChange}
-                          // onFormSubmit={this.handleUsersChange}
-                          // onUserClick={this.handleSingleUseChange}
-                          // users={this.state.users}
-                      />
-                  )}/>
+                  <Route exact path='/' component={Homepage}/>
                   <Route exact path={'/about'} component={About}/>
-                  {/*<Route exact path={'/users/:id'} render={props => (*/}
-                  {/*      <UserDetail*/}
-                  {/*          {...props}*/}
-                  {/*          singleUser={this.state.singleUser}*/}
-                  {/*          userRepos={this.state.userRepos}*/}
-                  {/*          onSingleUserChange={this.handleSingleUseChange}*/}
-                  {/*          loading={this.state.loading}*/}
-                  {/*      />*/}
-                  {/*    )}/>*/}
+                  <Route exact path={'/users/:id'}
+                         render={props => {
+                             fetchGetUser(props.match.params.id)(dispatch)
+                             return <UserDetail/>
+                         }}
+                  />
+                          {/*<UserDetail*/}
+                              {/*          {...props}*/}
+                              {/*          singleUser={this.state.singleUser}*/}
+                              {/*          userRepos={this.state.userRepos}*/}
+                              {/*          onSingleUserChange={this.handleSingleUseChange}*/}
+                              {/*          loading={this.state.loading}*/}
+                              {/*      />*/}
+                              {/*    )}/>*/}
               </Switch>
           </Router>
       );
-    }
 
 }
 
-export default App;
+export default connect()(App);
