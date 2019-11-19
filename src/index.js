@@ -7,7 +7,6 @@ import {Provider} from "react-redux";
 import rootReducer from "./reducers"
 import {createStore, applyMiddleware} from "redux";
 import thunk from 'redux-thunk'
-import axios from "axios";
 import {fetchGets} from "./actions";
 
 const store = createStore(rootReducer, applyMiddleware(thunk))

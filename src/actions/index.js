@@ -55,8 +55,8 @@ export const fetchGets = (keywords) => (dispatch) => {
     return axios.get(url).then(
         res => {
             dispatch(requestGetSuccess(res.data.items))
-            // console.log('response')
-            // console.log(res.data.items)
+            console.log('response')
+            console.log(res.data.items)
         }
     ).catch(
         error  => dispatch(requestGetFailure(error))
@@ -67,18 +67,31 @@ export const fetchGetUser = (id) => (dispatch) => {
     console.log('start fetch user')
     dispatch(requestGet())
 
-    //Retrieve data of a user from GitHub API
-    let url = `https://api.github.com/users/${id}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
-    let response = axios.get(url).then(response => dispatch(requestGetUserSuccess(response.data))).catch(
+
+    //Retrieve user repositories
+    let url = `https://api.github.com/users/${id}/repos?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    let response = axios.get(url).then(
+        response => {
+            console.log('asdfasfasdf')
+            console.log(response.data)
+            dispatch(requestGetUserReposSuccess(response.data))
+        }
+    ).catch(
         error => dispatch(requestGetFailure(error))
     )
 
-    //Retrieve user repositories
-    url = `https://api.github.com/users/${id}/repos?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    // Retrieve data of a user from GitHub API
+    url = `https://api.github.com/users/${id}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    console.log(url)
     response = axios.get(url).then(
-        response => dispatch(requestGetUserReposSuccess(response.data))
-    ).catch(
-        error => dispatch(requestGetFailure(error))
+        response => {
+            // console.log('enter')
+            // console.log(response.data)
+            dispatch(requestGetUserSuccess(response.data))
+        }).catch(
+        error => {
+            dispatch(requestGetFailure(error))
+        }
     )
 }
 

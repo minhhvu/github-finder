@@ -3,7 +3,9 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
 const UserBioHeader = ({user}) => {
-    const profileUser = user.items;
+    const profileUser = user.data;
+    console.log('user infor')
+    console.log(user)
 
     const Header = () => (
         <div className={''}>
