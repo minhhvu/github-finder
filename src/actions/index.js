@@ -55,8 +55,6 @@ export const fetchGets = (keywords) => (dispatch) => {
     return axios.get(url).then(
         res => {
             dispatch(requestGetSuccess(res.data.items))
-            console.log('response')
-            console.log(res.data.items)
         }
     ).catch(
         error  => dispatch(requestGetFailure(error))
@@ -72,8 +70,6 @@ export const fetchGetUser = (id) => (dispatch) => {
     let url = `https://api.github.com/users/${id}/repos?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
     let response = axios.get(url).then(
         response => {
-            console.log('asdfasfasdf')
-            console.log(response.data)
             dispatch(requestGetUserReposSuccess(response.data))
         }
     ).catch(
@@ -82,11 +78,8 @@ export const fetchGetUser = (id) => (dispatch) => {
 
     // Retrieve data of a user from GitHub API
     url = `https://api.github.com/users/${id}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
-    console.log(url)
     response = axios.get(url).then(
         response => {
-            // console.log('enter')
-            // console.log(response.data)
             dispatch(requestGetUserSuccess(response.data))
         }).catch(
         error => {
@@ -94,36 +87,3 @@ export const fetchGetUser = (id) => (dispatch) => {
         }
     )
 }
-
-// class GetAPI {
-//     static getUsers = async () => {
-//         //Retrieve data from Github API
-//         const search = 'minh'; //setup the 'minh' as the searching keywords
-//         let response = await axios.get(`https://api.github.com/search/users?q=${search}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`)
-//         return response.data.items;
-//     }
-// }
-
-// const loadUsersSuccess = () => ({
-//     type: LOAD_USERS_SUCCESS,
-//     users
-// })
-
-
-// export const doSearch = (keywords) => (dispatch) => {
-//
-// }
-
-// export const doSearch = (keywords) => (dispatch) => {
-//
-//     return {
-//         type: DO_SEARCH,
-//         // users
-//     }
-// }
-//
-// export const selectUser = (singleUser, userRepos) => ({
-//     type: SELECT_USER,
-//     singleUser,
-//     userRepos
-// })

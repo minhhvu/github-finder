@@ -8,15 +8,8 @@ class Homepage extends React.Component{
     render() {
         return (
             <Fragment>
-                <SearchForm
-                    // keywords={this.props.keywords}
-                    // onKeywordsChange={this.props.onKeywordsChange}
-                    // onFormSubmit={this.props.onFormSubmit}
-                />
-                <UsersGrid
-                    // users={this.props.users}
-                    // onUserClick={this.props.handleSingleUseChange}
-                />
+                <SearchForm/>
+                <UsersGrid/>
             </Fragment>
         );
     }
