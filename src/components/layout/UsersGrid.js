@@ -1,9 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 
-const UsersGrid = (props) => {
-
-    const listUsers = props.users.map((user) =>
+const UsersGrid = ({users}) => {
+    // console.log('start showing')
+    // console.log(users.items)
+    const listUsers = users.items.map((user) =>
         <div className={'border rounded p-2 mb-3'} style={{width: '12rem'}}>
             <Link to={`/users/${user.login}`}>
                 <img src={user.avatar_url} className={"card-img-top"} alt={user.login}/>
@@ -23,4 +26,14 @@ const UsersGrid = (props) => {
     );
 }
 
-export default UsersGrid;
+UsersGrid.propTypes = {
+    users: PropTypes.array.isRequired
+}
+
+const mapStateToProps = state => ({
+    users: state.users
+})
+
+export default connect(
+    mapStateToProps
+)(UsersGrid)

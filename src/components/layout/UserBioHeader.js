@@ -1,8 +1,11 @@
 import React, {Fragment} from 'react';
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 
-const UserBioHeader = (props) => {
-    const user = props.user;
+const UserBioHeader = ({user}) => {
+    const profileUser = user.data;
+    console.log('user infor')
+    console.log(user)
 
     const Header = () => (
         <div className={''}>
@@ -16,26 +19,26 @@ const UserBioHeader = (props) => {
 
     const FollowingBar = () => (
         <div className={'border rounded p-3 mt-3 text-center'}>
-            <span className={'ml-3 mr-3 p-1 rounded bg-secondary'}>Followers: {user.followers}</span>
-            <span className={'ml-3 mr-3 p-1 rounded bg-warning'}>Following: {user.following}</span>
-            <span className={'ml-3 mr-3 p-1 rounded bg-success'}>Public Repos: {user.public_repos}</span>
-            <span className={'ml-3 mr-3 p-1 rounded bg-danger'}>Public Gists: {user.public_gists}</span>
+            <span className={'ml-3 mr-3 p-1 rounded bg-secondary'}>Followers: {profileUser.followers}</span>
+            <span className={'ml-3 mr-3 p-1 rounded bg-warning'}>Following: {profileUser.following}</span>
+            <span className={'ml-3 mr-3 p-1 rounded bg-success'}>Public Repos: {profileUser.public_repos}</span>
+            <span className={'ml-3 mr-3 p-1 rounded bg-danger'}>Public Gists: {profileUser.public_gists}</span>
         </div>
     )
 
     const BioProfile = () => (
         <div className={'d-flex border rounded p-3 mt-3'}>
             <div className={'col-sm-6 text-center'}>
-                <img className={'img-fluid rounded-lg'} src={user.avatar_url} alt={user.name} style={{width: '10rem'}}/>
-                <div className={'h5 mt-3'}>{user.name}</div>
-                <div>Location: {user.location}</div>
+                <img className={'img-fluid rounded-lg'} src={profileUser.avatar_url} alt={profileUser.name} style={{width: '10rem'}}/>
+                <div className={'h5 mt-3'}>{profileUser.name}</div>
+                <div>Location: {profileUser.location}</div>
             </div>
             <div className={'col-sm-6'}>
                 <div className={'h5'}>Bio</div>
-                <p>{user.bio}</p>
-                <a href={user.html_url} className={'btn btn-secondary mt-3 mb-3'} target="_blank">Visit Github Profile</a>
-                <div>Blog: {user.blog}</div>
-                <div>Company: {user.company}</div>
+                <p>{profileUser.bio}</p>
+                <a href={profileUser.html_url} className={'btn btn-secondary mt-3 mb-3'} target="_blank">Visit Github Profile</a>
+                <div>Blog: {profileUser.blog}</div>
+                <div>Company: {profileUser.company}</div>
             </div>
         </div>
     )
@@ -49,4 +52,10 @@ const UserBioHeader = (props) => {
     )
 }
 
-export default UserBioHeader;
+const mapStateToProps = state => (
+    {
+        user: state.user
+    }
+)
+
+export default connect(mapStateToProps)(UserBioHeader);
