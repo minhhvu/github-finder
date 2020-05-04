@@ -11,7 +11,7 @@ Live Link: https://github-finder-react-app.firebaseapp.com/
 - Search for Github user accounts
 - Look at the account detail: Following/Followers, Repositories, ....
 
-(./public/ezgif.com-video-to-gif.gif)
+![Features](./public/ezgif.com-video-to-gif.gif)
 
 ## Available Scripts
 
