@@ -1,6 +1,15 @@
 This project was a react app which retrieved data from GitHub API to provide users could search for the profile of GitHub users. 
 
-The purposed of project is to practice on React and React-router
+Live Link: https://github-finder-react-app.firebaseapp.com/
+
+## Technologies:
+- React/React Router
+- Redux
+- Google Firebase
+
+## Features:
+- Search for Github user accounts
+- Look at the account detail: Following/Followers, Repositories, ....
 
 ## Available Scripts
 
